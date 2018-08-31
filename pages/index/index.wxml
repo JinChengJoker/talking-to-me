@@ -1,66 +1,12 @@
 <view id="chatApp">
     <view id="chatBody">
         <view id="chatList">
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-johnny">
-                <text>Hello MiniProgram!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
-            </section>
-            <section class="msg msg-guest">
-                <text>Hello World!</text>
+            <section wx:for="{{messageStack}}" class="msg msg-{{item.person}}">
+                <text>{{item.text}}</text>
             </section>
         </view>
     </view>
-    <view id="chatFooter">
+    <view id="chatFooter" bindtap='pushMessage'>
         <text>说点什么吧...</text>
     </view>
 </view>

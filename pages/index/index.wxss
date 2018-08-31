@@ -6,7 +6,6 @@
 #chatBody {
     position: relative;
     flex: 1;
-    border: 1px solid red;
     background-color: #E8F9F6;
 }
 #chatList {
@@ -32,17 +31,16 @@
     padding: 9px 14px;
     border-radius: 8px;
 }
-.msg-guest > text {
+.msg-johnny > text {
     background: #fff;
 }
-.msg-johnny {
+.msg-guest {
     flex-direction: row-reverse;
 }
-.msg-johnny > text {
+.msg-guest > text {
     color: #fff;
     background: linear-gradient(20deg, #3FD1E1 0%, #44D7CD 100%);
 }
 #chatFooter {
     padding: 18px 25px;
-    border: 1px solid red;
 }

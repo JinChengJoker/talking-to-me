@@ -1,7 +1,24 @@
 //index.js
-//获取应用实例
-const app = getApp()
-
 Page({
-
+    data: {
+        messageStack: [
+            {
+                person: 'johnny',
+                text: 'Hello World !'
+            },
+            {
+                person: 'guest',
+                text: 'Hello MiniProgram !'
+            }
+        ]
+    },
+    pushMessage() {
+        this.data.messageStack.push({
+            person: 'guest',
+            text: 'Hi !'
+        })
+        this.setData({
+            messageStack: this.data.messageStack
+        })
+    }
 })
