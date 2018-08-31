@@ -4,18 +4,18 @@ Page({
         messageStack: [
             {
                 person: 'johnny',
-                text: 'Hello World !'
+                content: 'Hello World !'
             },
             {
                 person: 'guest',
-                text: 'Hello MiniProgram !'
+                content: 'Hello MiniProgram !'
             }
         ]
     },
     pushMessage() {
         this.data.messageStack.push({
             person: 'guest',
-            text: 'Hi !'
+            content: 'Hi !'
         })
         this.setData({
             messageStack: this.data.messageStack

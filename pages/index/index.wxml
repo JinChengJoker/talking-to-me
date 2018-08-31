@@ -2,7 +2,7 @@
     <view id="chatBody">
         <view id="chatList">
             <section wx:for="{{messageStack}}" class="msg msg-{{item.person}}">
-                <text>{{item.text}}</text>
+                <text>{{item.content}}</text>
             </section>
         </view>
     </view>

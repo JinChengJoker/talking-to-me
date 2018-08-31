@@ -26,6 +26,7 @@
     margin-bottom: 20px;
 }
 .msg > text {
+    position: relative;
     display: inline-block;
     max-width: 60%;
     padding: 9px 14px;
@@ -34,12 +35,30 @@
 .msg-johnny > text {
     background: #fff;
 }
+.msg-johnny > text::after {
+    position: absolute;
+    top: 8px;
+    left: -16px;
+    display: block;
+    content: "";
+    border: 10px solid transparent;
+    border-right: 10px solid #fff;
+}
 .msg-guest {
     flex-direction: row-reverse;
 }
 .msg-guest > text {
     color: #fff;
-    background: linear-gradient(20deg, #3FD1E1 0%, #44D7CD 100%);
+    background: #3FD1E1;
+}
+.msg-guest > text::after {
+    position: absolute;
+    top: 8px;
+    right: -16px;
+    display: block;
+    content: "";
+    border: 10px solid transparent;
+    border-left: 10px solid #3FD1E1;
 }
 #chatFooter {
     padding: 18px 25px;
