@@ -1,21 +1,21 @@
 <view id="chatApp">
     <view id="chatBody">
         <view id="chatList">
-            <section class="msg msg-johnny">
+            <section wx:if="{{isWriting}}" class="msg msg-johnny">
                 <view class="content">
                     <view id="writing">
                         <span></span><span></span><span></span>
                     </view>
                 </view>
             </section>
-            <section wx:for="{{messageStack}}" class="msg msg-{{item.person}}">
+            <section wx:for="{{messageStack}}" wx:key="{{index}}" class="msg msg-{{item.person}}">
                 <view class="content">
                     <text>{{item.content}}</text>
                 </view>
             </section>
         </view>
     </view>
-    <view id="chatFooter" bindtap='pushMessage'>
+    <view id="chatFooter" bindtap="pushMessage">
         <text>说点什么吧...</text>
     </view>
 </view>

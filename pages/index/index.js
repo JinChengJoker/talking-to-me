@@ -1,21 +1,21 @@
 //index.js
 Page({
     data: {
-        messageStack: [
-            {
-                person: 'johnny',
-                content: 'Hello World !'
-            },
-            {
-                person: 'guest',
-                content: 'Hello MiniProgram !'
-            }
-        ]
+        isWriting: true,
+        messageStack: []
     },
-    pushMessage() {
+    onReady() {
+        setTimeout(() => {
+            this.setData({
+                isWriting: false
+            })
+            this.pushMessage(undefined, 'johnny', '很高兴遇见你')
+        }, 2000)
+    },
+    pushMessage(event, person, content) {
         this.data.messageStack.push({
-            person: 'guest',
-            content: 'Hi !'
+            person: person || 'guest',
+            content: content || '我也是'
         })
         this.setData({
             messageStack: this.data.messageStack
