@@ -1,8 +1,17 @@
 <view id="chatApp">
     <view id="chatBody">
         <view id="chatList">
+            <section class="msg msg-johnny">
+                <view class="content">
+                    <view id="writing">
+                        <span></span><span></span><span></span>
+                    </view>
+                </view>
+            </section>
             <section wx:for="{{messageStack}}" class="msg msg-{{item.person}}">
-                <text>{{item.content}}</text>
+                <view class="content">
+                    <text>{{item.content}}</text>
+                </view>
             </section>
         </view>
     </view>
