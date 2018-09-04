@@ -1,6 +1,6 @@
 <view id="chatApp">
     <view id="chatBody">
-        <view id="chatList">
+        <scroll-view id="chatList" scroll-y>
             <section wx:if="{{isWriting}}" class="msg msg-johnny">
                 <view class="content">
                     <view id="writing">
@@ -13,7 +13,7 @@
                     <text>{{item.content}}</text>
                 </view>
             </section>
-        </view>
+        </scroll-view>
     </view>
     <view id="chatFooter" bindtap="pushMessage">
         <text>说点什么吧...</text>

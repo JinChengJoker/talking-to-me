@@ -17,16 +17,13 @@
     left: 0;
     right: 0;
     bottom: 0;
-    padding: 16px;
-    overflow-y: scroll;
-    -webkit-overflow-scrolling: touch;
-}
-#chatList::-webkit-scrollbar {
-    display: none;
+    box-sizing: border-box;
+    padding: 16px 10px;
 }
 .msg {
     display: flex;
     margin-bottom: 20px;
+    padding: 0 6px;
 }
 .msg-guest {
     flex-direction: row-reverse;
