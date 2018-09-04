@@ -2,7 +2,8 @@
 Page({
     data: {
         isWriting: true,
-        messageStack: []
+        messageStack: [],
+        scrollTop: 0
     },
     onReady() {
         setTimeout(() => {
@@ -19,6 +20,20 @@ Page({
         })
         this.setData({
             messageStack: this.data.messageStack
+        })
+        this.getMsgHeight()
+    },
+    scrollTo(h) {
+        this.setData({
+            scrollTop: this.data.scrollTop + h
+        })
+    },
+    getMsgHeight() {
+        let id = '#msg' + this.data.messageStack.length
+        var query = wx.createSelectorQuery()
+        query.select(id).boundingClientRect()
+        query.exec((rect) => {
+            this.scrollTo(rect[0].height)
         })
     }
 })

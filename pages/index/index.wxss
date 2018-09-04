@@ -18,12 +18,17 @@
     right: 0;
     bottom: 0;
     box-sizing: border-box;
-    padding: 16px 10px;
+    padding: 16px 0;
+}
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    color: transparent;
 }
 .msg {
     display: flex;
     margin-bottom: 20px;
-    padding: 0 6px;
+    padding: 0 16px;
 }
 .msg-guest {
     flex-direction: row-reverse;

@@ -1,6 +1,6 @@
 <view id="chatApp">
     <view id="chatBody">
-        <scroll-view id="chatList" scroll-y>
+        <scroll-view id="chatList" scroll-y scroll-with-animation scroll-top="{{scrollTop}}">
             <section wx:if="{{isWriting}}" class="msg msg-johnny">
                 <view class="content">
                     <view id="writing">
@@ -8,7 +8,7 @@
                     </view>
                 </view>
             </section>
-            <section wx:for="{{messageStack}}" wx:key="{{index}}" class="msg msg-{{item.person}}">
+            <section wx:for="{{messageStack}}" wx:key="{{index}}" id="msg{{index+1}}" class="msg msg-{{item.person}}">
                 <view class="content">
                     <text>{{item.content}}</text>
                 </view>
