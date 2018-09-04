@@ -15,7 +15,7 @@
             </section>
         </scroll-view>
     </view>
-    <view id="chatFooter" bindtap="pushMessage">
+    <view id="chatFooter" data-next-id="{{nextId}}" bindtap="pushMessage">
         <text>说点什么吧...</text>
     </view>
 </view>

@@ -1,27 +1,46 @@
 //index.js
+import chatData from './dialog.js'
+
 Page({
     data: {
         isWriting: true,
         messageStack: [],
+        nextId: '',
         scrollTop: 0
     },
     onReady() {
         setTimeout(() => {
-            this.setData({
-                isWriting: false
+            this.data.messageStack.push({
+                person: chatData[0].person,
+                content: chatData[0].content
             })
-            this.pushMessage(undefined, 'johnny', '很高兴遇见你')
+            this.setData({
+                isWriting: false,
+                messageStack: this.data.messageStack,
+                nextId: chatData[0].next
+            })
         }, 2000)
     },
     pushMessage(event, person, content) {
-        this.data.messageStack.push({
-            person: person || 'guest',
-            content: content || '我也是'
-        })
-        this.setData({
-            messageStack: this.data.messageStack
-        })
-        this.getMsgHeight()
+        let message
+        let nextId = event.currentTarget.dataset.nextId
+        if (nextId) {
+            for (let i = 0; i < chatData.length; i++) {
+                if (chatData[i].id === nextId) {
+                    message = chatData[i]
+                    break
+                }
+            }
+            this.data.messageStack.push({
+                person: message.person,
+                content: message.content
+            })
+            this.setData({
+                messageStack: this.data.messageStack,
+                nextId: message.next || ''
+            })
+            this.getMsgHeight()
+        }
     },
     scrollTo(h) {
         this.setData({
