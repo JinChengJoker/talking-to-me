@@ -15,7 +15,6 @@ Page({
         let reply = this.data.reply
         if (reply) {
             this.pushMessage('guest', reply)
-            this.getMsgHeight(reply.id)
             this.setData({
                 reply: null
             })
@@ -40,11 +39,7 @@ Page({
                     scrollTop: this.data.scrollTop + 37
                 })
                 setTimeout(() => {
-                    this.setData({
-                        isWriting: false
-                    })
                     this.pushMessage('johnny', msgList[m])
-                    this.getMsgHeight(msgList[m].id)
                     if (m === msgList.length-1) {
                         this.setData({
                             reply: line.reply || null
@@ -61,8 +56,10 @@ Page({
             content: message.content
         })
         this.setData({
+            isWriting: false,
             messageStack: this.data.messageStack
         })
+        this.getMsgHeight(message.id)
     },
     getMsgHeight(msgId) {
         let id = '#msg' + msgId
