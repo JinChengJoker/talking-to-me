@@ -14,12 +14,12 @@ Page({
         }, 2000)
     },
     guestSay() {
-        if(this.data.reply) {
-            let content = this.data.reply.content
-            let nextId = this.data.reply.nextId
+        let reply = this.data.reply
+        if (reply) {
             this.data.messageStack.push({
+                id: reply.id,
                 person: 'guest',
-                content: content
+                content: reply.content
             })
             this.setData({
                 messageStack: this.data.messageStack,
@@ -31,10 +31,10 @@ Page({
                     scrollTop: this.data.scrollTop + 37
                 })
                 setTimeout(() => {
-                    this.johnnySay(nextId)
+                    this.johnnySay(reply.nextId)
                 }, 2000)
             }, 1000)
-            this.getMsgHeight()
+            this.getMsgHeight(reply.id)
         }
     },
     johnnySay(id) {
@@ -46,27 +46,28 @@ Page({
             }
         }
         this.data.messageStack.push({
+            id: message.id,
             person: 'johnny',
             content: message.content
         })
         this.setData({
             isWriting: false,
             messageStack: this.data.messageStack,
-            reply: message.reply
+            reply: message.reply || null
         })
-        this.getMsgHeight()
+        this.getMsgHeight(message.id)
     },
-    scrollTo(h) {
-        this.setData({
-            scrollTop: this.data.scrollTop + h
-        })
-    },
-    getMsgHeight() {
-        let id = '#msg' + this.data.messageStack.length
+    getMsgHeight(msgId) {
+        let id = '#msg' + msgId
         var query = wx.createSelectorQuery()
         query.select(id).boundingClientRect()
         query.exec((rect) => {
             this.scrollTo(rect[0].height)
+        })
+    },
+    scrollTo(h) {
+        this.setData({
+            scrollTop: this.data.scrollTop + h
         })
     }
 })

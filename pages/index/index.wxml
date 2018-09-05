@@ -1,7 +1,7 @@
 <view id="chatApp">
     <view id="chatBody">
         <scroll-view id="chatList" scroll-y scroll-with-animation scroll-top="{{scrollTop}}">
-            <section wx:for="{{messageStack}}" wx:key="{{index}}" id="msg{{index+1}}" class="msg msg-{{item.person}}">
+            <section wx:for="{{messageStack}}" wx:key="{{item.id}}" id="msg{{item.id}}" class="msg msg-{{item.person}}">
                 <view class="content">
                     <text>{{item.content}}</text>
                 </view>
