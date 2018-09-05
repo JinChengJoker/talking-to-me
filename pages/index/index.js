@@ -9,30 +9,18 @@ Page({
         scrollTop: 0
     },
     onReady() {
-        setTimeout(() => {
-            this.johnnySay('101')
-        }, 2000)
+        this.johnnySay('101')
     },
     guestSay() {
         let reply = this.data.reply
         if (reply) {
-            this.data.messageStack.push({
-                id: reply.id,
-                person: 'guest',
-                content: reply.content
-            })
-            this.setData({
-                messageStack: this.data.messageStack,
-                reply: null
-            })
+            this.pushMessage('guest', reply)
             setTimeout(() => {
                 this.setData({
                     isWriting: true,
                     scrollTop: this.data.scrollTop + 37
                 })
-                setTimeout(() => {
-                    this.johnnySay(reply.nextId)
-                }, 2000)
+                this.johnnySay(reply.nextId)
             }, 1000)
             this.getMsgHeight(reply.id)
         }
@@ -45,17 +33,24 @@ Page({
                 break
             }
         }
+        setTimeout(() => {
+            this.pushMessage('johnny', message)
+            this.setData({
+                isWriting: false
+            })
+            this.getMsgHeight(message.id)
+        }, 2000)
+    },
+    pushMessage(person, message) {
         this.data.messageStack.push({
             id: message.id,
-            person: 'johnny',
+            person: person,
             content: message.content
         })
         this.setData({
-            isWriting: false,
             messageStack: this.data.messageStack,
             reply: message.reply || null
         })
-        this.getMsgHeight(message.id)
     },
     getMsgHeight(msgId) {
         let id = '#msg' + msgId
