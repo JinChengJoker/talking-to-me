@@ -15,31 +15,44 @@ Page({
         let reply = this.data.reply
         if (reply) {
             this.pushMessage('guest', reply)
+            this.getMsgHeight(reply.id)
+            this.setData({
+                reply: null
+            })
+            setTimeout(() => {
+                this.johnnySay(reply.nextId)
+            }, 1000)
+        }
+    },
+    johnnySay(id) {
+        let line
+        for (let i = 0; i < chatData.length; i++) {
+            if (chatData[i].id === id) {
+                line = chatData[i]
+                break
+            }
+        }
+        let msgList = line.msgList
+        for (let m = 0; m < msgList.length; m++) {
             setTimeout(() => {
                 this.setData({
                     isWriting: true,
                     scrollTop: this.data.scrollTop + 37
                 })
-                this.johnnySay(reply.nextId)
-            }, 1000)
-            this.getMsgHeight(reply.id)
+                setTimeout(() => {
+                    this.setData({
+                        isWriting: false
+                    })
+                    this.pushMessage('johnny', msgList[m])
+                    this.getMsgHeight(msgList[m].id)
+                    if (m === msgList.length-1) {
+                        this.setData({
+                            reply: line.reply || null
+                        })
+                    }
+                }, 2000)
+            }, m*3000)
         }
-    },
-    johnnySay(id) {
-        let message
-        for (let i = 0; i < chatData.length; i++) {
-            if (chatData[i].id === id) {
-                message = chatData[i]
-                break
-            }
-        }
-        setTimeout(() => {
-            this.pushMessage('johnny', message)
-            this.setData({
-                isWriting: false
-            })
-            this.getMsgHeight(message.id)
-        }, 2000)
     },
     pushMessage(person, message) {
         this.data.messageStack.push({
@@ -48,8 +61,7 @@ Page({
             content: message.content
         })
         this.setData({
-            messageStack: this.data.messageStack,
-            reply: message.reply || null
+            messageStack: this.data.messageStack
         })
     },
     getMsgHeight(msgId) {
